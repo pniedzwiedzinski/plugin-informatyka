@@ -26,7 +26,7 @@ $ brew install pipenv
 ## Install and setup
 
 ```fish
-$ omf install informatyka
+$ omf install https://github.com/pniedzwiedzinski/plugin-informatyka
 ```
 
 ### Set your password in keyring
