@@ -1,56 +1,30 @@
-<img src="https://cdn.rawgit.com/oh-my-fish/oh-my-fish/e4f1c2e0219a17e2c748b824004c8d0b38055c16/docs/logo.svg" align="left" width="144px" height="144px"/>
+![meme](https://tr3.cbsistatic.com/hub/i/2017/03/23/ac406fbc-e3c1-4eba-9717-6854efd46c7f/cce53b95907bc6a657c0b5f6de78d757.jpg)
 
-#### informatyka
+# Informatyka
 
-> Auto upload of files from computer science lesson.
-
-[![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE)
-[![Fish Shell Version](https://img.shields.io/badge/fish-v2.2.0-007EC7.svg?style=flat-square)](https://fishshell.com)
-[![Oh My Fish Framework](https://img.shields.io/badge/Oh%20My%20Fish-Framework-007EC7.svg?style=flat-square)](https://www.github.com/oh-my-fish/oh-my-fish)
-
-<br/>
+Auto upload of `.cpp` files. Just type <s>`informatyka`</s> 
+```
+docker run -i -v /path/to/folder:/app/informatyka -v /path/for/config/:/app --name informatyka informatyka
+``` 
+and let magic happen
 
 ## Requirements
 
-- git
-- pipenv
-- keyring
+- Docker
+- Docker Compose
 
-```fish
-$ pip3 install keyring pipenv
+## Install
 
-# For macOS
-$ brew install pipenv
+```bash
+# Work in progress
 ```
 
-## Install and setup
+## Setup
 
-```fish
-$ omf install https://github.com/pniedzwiedzinski/plugin-informatyka
-```
-
-### Set your password in keyring
-
-```fish
-$ keyring set system <YOUR_MAIL> <PASSWORD>
-```
-
-### Setup config file
-
-Fill config file `~/.informatyka/config.py`
+This script requires, that you have all your `.cpp` files in seperate directory and should not contain much of different files, i.e. desktop would be a bad idea, but seperate folder on desktop will work well. 
 
 ## Usage
 
-```fish
-$ informatyka
+```bash
+# work in progress
 ```
-
-# License
-
-[MIT][mit] © [Patryk Niedźwiedziński][author] et [al][contributors]
-
-[mit]: https://opensource.org/licenses/MIT
-[author]: https://github.com/pniedzwiedzinski
-[contributors]: https://github.com/pniedzwiedzinski/plugin-informatyka/graphs/contributors
-[omf-link]: https://www.github.com/oh-my-fish/oh-my-fish
-[license-badge]: https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square
