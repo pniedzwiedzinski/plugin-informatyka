@@ -1,6 +1,7 @@
 #!/bin/sh
 
-set -euo pipefail
+set -x
+set -ueo pipefail
 
 cd /app/informatyka
 git status -u | grep .cpp | zip inf $(cat)

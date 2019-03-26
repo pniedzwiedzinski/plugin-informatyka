@@ -2,13 +2,7 @@
 
 # Informatyka
 
-Auto upload of `.cpp` files. Just type <s>`informatyka`</s>, sorry a little more complex (use alias):
-
-```
-docker run -it -v /path/to/folder:/app/informatyka -v /path/for/config.py:/app/config.py -v /path/to/some/folder/that/you/won't/remove/:/app/git --name informatyka informatyka
-```
-
-and let the magic happen.
+Auto upload of `.cpp` files. Just type <s>`informatyka`</s>, sorry a little more complex (use alias)
 
 ## Requirements
 
@@ -23,17 +17,36 @@ $ docker pull pniedzwiedzinski/informatyka
 
 ## Setup
 
-This script requires, that you have all your `.cpp` files in seperate directory and should not contain much of different files, i.e. desktop would be a bad idea, but seperate folder on desktop will work well.
+This script requires, that you have all your `.cpp` files in separate directory and should not contain much
+of different files, i.e. desktop would be a bad idea, but separate folder on desktop will work well.
+
+Config file - `config.py`
+
+```
+sender_email = "your_email"
+
+receiver_email = "target_email"
+
+message_subject = "Subject"
+message_body = "Nice"
+```
 
 ## Usage
 
 ```bash
-$ alias informatyka="docker run -it -v /path/to/folder:/app/informatyka -v /path/for/config.py:/app/config.py -v /path/to/some/folder/that/you/won't/remove/:/app/git --name informatyka informatyka"
-$ informatyka
+# Init
+$ docker run -it -d -v /path/to/folder:/app/informatyka -v /path/for/config.py:/app/config.py -v /path/to/some/folder/that/you/wont/remove/:/app/git --name informatyka informatyka sh
+$ docker exec informatyka init
+
+# Daily usage
+$ alias informatyka="docker start informatyka && docker exec -it informatyka commit && docker stop informatyka"
+$ informatyka # You will be asked for your email password
 ```
 
 ### How it works
 
 Script is running in docker container, so it is independent from operating system. You can run
-linux commands like this `informatyka echo o`. This script recognize new files because it
-actually uses Git. That means you can check new files with `informatyka git status`.
+linux commands like this `docker exec informatyka echo o`. This script recognize new files because it
+actually uses Git. That means you can check new files with `informatyka git --git-dir="/app/git" status`.
+`git-dir` option is used to move git files to another directory, that's why it's important not to delete
+the third path.
