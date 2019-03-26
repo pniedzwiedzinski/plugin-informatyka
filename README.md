@@ -47,6 +47,6 @@ $ informatyka # You will be asked for your email password
 
 Script is running in docker container, so it is independent from operating system. You can run
 linux commands like this `docker exec informatyka echo o`. This script recognize new files because it
-actually uses Git. That means you can check new files with `informatyka git --git-dir="/app/git" status`.
+actually uses Git. That means you can check new files with `docker exec informatyka git --git-dir="/app/git" status`.
 `git-dir` option is used to move git files to another directory, that's why it's important not to delete
 the third path.
