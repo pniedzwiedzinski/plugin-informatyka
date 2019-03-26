@@ -1,0 +1,3 @@
+mkdir ~/.informatyka
+
+echo $path
