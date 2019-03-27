@@ -48,7 +48,7 @@ $ docker exec informatyka init
 ```bash
 ~
 ├── .informatyka
-|   ├── config.py
+│   ├── config.py
 │   ├── git # git-dir
 ├── Documents
 │   ├── Informatyka # *.cpp files
