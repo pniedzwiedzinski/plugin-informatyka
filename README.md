@@ -33,12 +33,30 @@ message_body = "Nice"
 
 ## Usage
 
-```bash
-# Init
-$ docker run -it -d -v /path/to/folder:/app/informatyka -v /path/for/config.py:/app/config.py -v /path/to/some/folder/that/you/wont/remove/:/app/git --name informatyka informatyka sh
-$ docker exec informatyka init
+### Init
 
-# Daily usage
+```bash
+$ docker run -it -d -v /path/to/folder:/app/informatyka -v /path/to/config.py:/app/config.py -v /path/to/some/folder/that/you/wont/remove/:/app/git --name informatyka informatyka sh
+$ docker exec informatyka init
+```
+- `/path/to/folder/` - path to folder with cpp files
+- `/path/to/config.py/` - path to config.py
+- `/path/to/some/folder/that/you/wont/remove/` - git folder, if you don't know what git is: this folder is something like backup
+
+#### My setup
+
+```bash
+~
+├── .informatyka
+|   ├── config.py
+│   ├── git # git-dir
+├── Documents
+│   ├── Informatyka # *.cpp files
+```
+
+### Daily usage
+
+```bash
 $ alias informatyka="docker start informatyka && docker exec -it informatyka commit && docker stop informatyka"
 $ informatyka # You will be asked for your email password
 ```
