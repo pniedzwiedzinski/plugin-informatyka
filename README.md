@@ -7,7 +7,6 @@ Auto upload of `.cpp` files. Just type <s>`informatyka`</s>, sorry a little more
 ## Requirements
 
 - Docker
-- Docker Compose
 
 ## Install
 
