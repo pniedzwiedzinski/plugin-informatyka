@@ -42,7 +42,7 @@ Config file - `config.json`
 $ docker run -it -d -v /path/to/folder:/app/informatyka \
     -v /path/to/config.json:/app/config.json \
     -v /path/to/some/folder/that/you/wont/remove/:/app/git \
-    -v /path/to/.gitconfig:/root/.gitconfig
+    -v /path/to/.gitconfig:/root/.gitconfig \
     --name informatyka informatyka sh
 $ docker exec informatyka init
 ```
