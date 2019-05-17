@@ -59,7 +59,7 @@ $ docker run -it \
 - `/path/to/folder/` - path to folder with \* files
 - `/path/to/config.json/` - path to config.json
 - `/path/to/some/folder/that/you/wont/remove/` - git folder, if you don't know what git is: this folder is something like backup
-- `/path/to/.gitconfig` - path to `.gitconfig` file, if you don't have one create one with this content:
+- `/path/to/.gitconfig` - path to `.gitconfig` file, default is `~/.gitconfig`, if you don't have one create one with this content:
 
   ```
   [user]
@@ -70,6 +70,12 @@ $ docker run -it \
 #### My setup
 
 ```bash
+-v ~/Documents/informatyka:/app/informatyka \
+-v ~/.informatyka/config.json:/app/config.json \
+-v ~/.informatyka/git/:/app/git \
+-v ~/.gitconfig:/root/.gitconfig \
+
+
 ~
 ├── .informatyka
 │   ├── config.json
