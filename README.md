@@ -21,7 +21,7 @@ of different files, i.e. desktop would be a bad idea, but separate folder on des
 
 Config file - `config.json`
 
-```json
+```js
 {
   "sender_email": "your_email",
 
@@ -38,18 +38,34 @@ Config file - `config.json`
 
 ### Init
 
+It looks scary 😰, sorry. This two command hopefully differs only at first and last line.
+
 ```bash
-$ docker run -it -d -v /path/to/folder:/app/informatyka \
+$ docker run -it --rm \
+    -v /path/to/folder:/app/informatyka \
     -v /path/to/config.json:/app/config.json \
     -v /path/to/some/folder/that/you/wont/remove/:/app/git \
     -v /path/to/.gitconfig:/root/.gitconfig \
-    --name informatyka informatyka sh
-$ docker exec informatyka init
+    informatyka init
+
+$ docker run -it \
+    -v /path/to/folder:/app/informatyka \
+    -v /path/to/config.json:/app/config.json \
+    -v /path/to/some/folder/that/you/wont/remove/:/app/git \
+    -v /path/to/.gitconfig:/root/.gitconfig \
+    --name informatyka informatyka commit
 ```
 
-- `/path/to/folder/` - path to folder with cpp files
+- `/path/to/folder/` - path to folder with \* files
 - `/path/to/config.json/` - path to config.json
 - `/path/to/some/folder/that/you/wont/remove/` - git folder, if you don't know what git is: this folder is something like backup
+- `/path/to/.gitconfig` - path to `.gitconfig` file, if you don't have one create one with this content:
+
+  ```
+  [user]
+      name = <your_name>
+      mail = <your_mail>
+  ```
 
 #### My setup
 
@@ -65,8 +81,8 @@ $ docker exec informatyka init
 ### Daily usage
 
 ```bash
-$ alias informatyka="docker start informatyka && docker exec -it informatyka commit && docker stop informatyka"
-$ informatyka # You will be asked for your email password
+$ alias informatyka="docker start -i informatyka"
+$ informatyka # You will be asked for your email password and GitHub credentials if you have origin set
 ```
 
 ### How it works
