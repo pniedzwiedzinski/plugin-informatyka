@@ -1,4 +1,5 @@
-import email
+#!/usr/local/bin/python3
+
 import smtplib
 import ssl
 import json
@@ -7,21 +8,21 @@ from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import config
+from config_parser import config
 
 try:
-    password = config.password
-except AttributeError:
+    password = config["password"]
+except KeyError:
     password = getpass.getpass(prompt="Your email password: ")
 
 # Initialize new message
 message = MIMEMultipart()
-message["From"] = config.sender_email
-message["To"] = config.receiver_email
-message["Subject"] = config.message_subject
+message["From"] = config["sender_email"]
+message["To"] = config["receiver_email"]
+message["Subject"] = config["message_subject"]
 
 # Add body to email
-message.attach(MIMEText(config.message_body, "plain"))
+message.attach(MIMEText(config["message_body"], "plain"))
 
 filename = "inf.zip"  # In same directory as script
 
@@ -45,5 +46,5 @@ text = message.as_string()
 # Log in to server using secure context and send email
 context = ssl.create_default_context()
 with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-    server.login(config.sender_email, password)
-    server.sendmail(config.sender_email, config.receiver_email, text)
+    server.login(config["sender_email"], password)
+    server.sendmail(config["sender_email"], config["receiver_email"], text)

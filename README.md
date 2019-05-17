@@ -2,7 +2,7 @@
 
 # Informatyka
 
-Auto upload of `.cpp` files. Just type <s>`informatyka`</s>, sorry a little more complex (use alias)
+Auto send files with mail. Just type <s>`informatyka`</s>, sorry a little more complex (use alias)
 
 ## Requirements
 
@@ -19,15 +19,19 @@ $ docker pull pniedzwiedzinski/informatyka
 This script requires, that you have all your `.cpp` files in separate directory and should not contain much
 of different files, i.e. desktop would be a bad idea, but separate folder on desktop will work well.
 
-Config file - `config.py`
+Config file - `config.json`
 
-```
-sender_email = "your_email"
+```json
+{
+  "sender_email": "your_email",
 
-receiver_email = "target_email"
+  "receiver_email": "target_email",
 
-message_subject = "Subject"
-message_body = "Nice"
+  "message_subject": "Subject",
+  "message_body": "Nice",
+
+  "re": ".cpp|.xlsx" // pattern for files
+}
 ```
 
 ## Usage
@@ -35,11 +39,16 @@ message_body = "Nice"
 ### Init
 
 ```bash
-$ docker run -it -d -v /path/to/folder:/app/informatyka -v /path/to/config.py:/app/config.py -v /path/to/some/folder/that/you/wont/remove/:/app/git --name informatyka informatyka sh
+$ docker run -it -d -v /path/to/folder:/app/informatyka \
+    -v /path/to/config.json:/app/config.json \
+    -v /path/to/some/folder/that/you/wont/remove/:/app/git \
+    -v /path/to/.gitconfig:/root/.gitconfig
+    --name informatyka informatyka sh
 $ docker exec informatyka init
 ```
+
 - `/path/to/folder/` - path to folder with cpp files
-- `/path/to/config.py/` - path to config.py
+- `/path/to/config.json/` - path to config.json
 - `/path/to/some/folder/that/you/wont/remove/` - git folder, if you don't know what git is: this folder is something like backup
 
 #### My setup
@@ -47,10 +56,10 @@ $ docker exec informatyka init
 ```bash
 ~
 ├── .informatyka
-│   ├── config.py
+│   ├── config.json
 │   ├── git # git-dir
 ├── Documents
-│   ├── Informatyka # *.cpp files
+│   ├── Informatyka # * files
 ```
 
 ### Daily usage
