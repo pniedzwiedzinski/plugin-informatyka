@@ -9,7 +9,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import config
 
-password = getpass.getpass(prompt="Your email password: ")
+try:
+    password = config.password
+except AttributeError:
+    password = getpass.getpass(prompt="Your email password: ")
 
 # Initialize new message
 message = MIMEMultipart()
