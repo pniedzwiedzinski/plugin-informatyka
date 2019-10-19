@@ -1,7 +1,5 @@
 #!/usr/local/bin/python3
 
-import smtplib
-import ssl
 import json
 import getpass
 from email import encoders
@@ -9,6 +7,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+import send_mail
 from config_parser import config
 from get_filename import get_filename
 
@@ -45,8 +44,19 @@ part.add_header("Content-Disposition", f"attachment; filename= {filename}")
 message.attach(part)
 text = message.as_string()
 
-# Log in to server using secure context and send email
-context = ssl.create_default_context()
-with smtplib.SMTP_SSL(config["message_server"], config["message_port"], context=context) as server:
-    server.login(config["sender_email"], password)
-    server.sendmail(config["sender_email"], config["receiver_email"], text)
+mail = (
+    text,
+    config["receiver_email"],
+    config["sender_email"],
+    password,
+    config["message_server"],
+    config["message_port"]
+)
+
+if config["message_protocol"] == "ssl":
+    send_mail.send_mail_ssl(*mail)
+elif config["message_protocol"] == "tls":
+    send_mail.send_mail_tls(*mail)
+else:
+    raise Exception(
+        "Cannot recognize value of 'message_protocol' in config.json")
